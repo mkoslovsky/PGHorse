@@ -6,7 +6,7 @@
 \packageTitle{PGHorse}
 }
 \description{
-\packageDescription{PGHorseS}
+\packageDescription{PGHorse}
 }
 \details{
 
