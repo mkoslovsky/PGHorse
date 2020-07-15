@@ -127,15 +127,41 @@ data_sim <- function(
   
 }
 
+# Provides results for Sensitivity, Specificity, and MCC for simulated data 
+# Make sure that the indicies are aligned 
+select_perf <- function( selected, truth ){
+  
+  if( any( ! selected %in% c( 0, 1 ) ) ) {
+    stop("Bad input: selected should be zero or one")
+  }
+  if( any( ! truth %in% c( 0, 1 ) ) ) {
+    stop("Bad input: truth should be zero or one")
+  }
+  select <- which( selected == 1 )
+  not_selected <- which( selected == 0 )
+  included <- which( truth == 1 )
+  excluded <- which( truth == 0 )
+  
+  TP <- sum( select %in% included )
+  TN <- sum( not_selected %in% excluded )
+  FP <- sum( select %in% excluded )
+  FN <- sum( not_selected %in% included )
+  sensitivity <- TP/( FN + TP )
+  specificity <- TN/( FP + TN ) 
+  mcc <- ( TP*TN - FP*FN )/(sqrt( TP + FP )*sqrt(TP + FN )*sqrt(TN + FP )*sqrt(TN + FN) )
+  
+  return( list( sens = sensitivity, spec = specificity, mcc = mcc ) ) 
+}
+
 
 # Determines inclusion for covariates based on X% credible intervals for x and z
-selection_horse <- function( PGHorse_obj = PGHorse_obj, CI_threshold_x = 0.05, CI_threshold_z = 0.05, burnin = 0){
+selection_horse <- function( PGHorse_obj = PGHorse_obj, CI_threshold_x = 0.05, threshold_z = 0.1, burnin = 0){
   # arg checking
   if( CI_threshold_x > 1 | CI_threshold_x < 0){
     stop("Bad input: CI_threshold_x should be a probability")
   }
-  if( CI_threshold_z > 1 | CI_threshold_z < 0){
-    stop("Bad input: CI_threshold_z should be a probability")
+  if(   threshold_z < 0){
+    stop("Bad input: threshold_z should be positive")
   }
   
   samples <- ncol(PGHorse_obj$mcmc$beta)
@@ -146,15 +172,15 @@ selection_horse <- function( PGHorse_obj = PGHorse_obj, CI_threshold_x = 0.05, C
   left <- floor( CI_threshold_x * samples_red/2 )
   right <- ceiling((1 - CI_threshold_x/2) * samples_red )
   
-  betaSort <- apply( PGHorse_obj$mcmc$beta[, (samples_red + 1):samples], 1, sort,  decreasing = F)
+  betaSort <- apply( PGHorse_obj$mcmc$beta[, (burnin + 1):samples], 1, sort,  decreasing = F)
   fix_left <- betaSort[ left, ]
   fix_right <- betaSort[ right  , ]
   fix_signals <- as.numeric(1 - ((fix_left <= 0) & (fix_right >= 0)))
+  fix_signals[c(1,2,3)] <- 1
   
-  kappaSort <- apply( PGHorse_obj$mcmc$K[, (samples_red + 1):samples], 1, sort,  decreasing = F)
-  ran_left <- kappaSort[ left, ]
-  ran_right <- kappaSort[ right  , ]
-  ran_signals <- as.numeric(1 - ((ran_left <= 0) & (ran_right >= 0)))
+  kappa <- apply( PGHorse_obj$mcmc$K[, (samples_red + 1):samples], 1, mean)
+  ran_signals <- ( kappa > threshold_z)*1
+  ran_signals[1] <- 1
   
   return(list( betas = fix_signals, kappas = ran_signals ) )
 }
