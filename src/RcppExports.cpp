@@ -6,55 +6,48 @@
 
 using namespace Rcpp;
 
-// rcpparma_hello_world
-arma::mat rcpparma_hello_world();
-RcppExport SEXP _PGHorse_rcpparma_hello_world() {
+// horsePGcpp
+List horsePGcpp(int iterations, int thin, arma::vec Y, arma::mat W, arma::vec subject, arma::vec subject_dems, arma::mat Ustar, arma::vec Ustar_dems, arma::mat Xbar, arma::mat Z, arma::mat beta, arma::mat sigma_beta, arma::vec tau_beta, arma::mat vartheta_beta, arma::vec A_beta, arma::mat xi, arma::mat mu, arma::mat K, arma::mat sigma_kappa, arma::vec tau_kappa, arma::mat vartheta_kappa, arma::vec A_kappa, arma::cube Gamma, arma::cube zeta, arma::mat V_gamma, arma::vec gamma_0, double m_0, double v_0, double tau);
+RcppExport SEXP _PGHorse_horsePGcpp(SEXP iterationsSEXP, SEXP thinSEXP, SEXP YSEXP, SEXP WSEXP, SEXP subjectSEXP, SEXP subject_demsSEXP, SEXP UstarSEXP, SEXP Ustar_demsSEXP, SEXP XbarSEXP, SEXP ZSEXP, SEXP betaSEXP, SEXP sigma_betaSEXP, SEXP tau_betaSEXP, SEXP vartheta_betaSEXP, SEXP A_betaSEXP, SEXP xiSEXP, SEXP muSEXP, SEXP KSEXP, SEXP sigma_kappaSEXP, SEXP tau_kappaSEXP, SEXP vartheta_kappaSEXP, SEXP A_kappaSEXP, SEXP GammaSEXP, SEXP zetaSEXP, SEXP V_gammaSEXP, SEXP gamma_0SEXP, SEXP m_0SEXP, SEXP v_0SEXP, SEXP tauSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpparma_hello_world());
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_outerproduct
-arma::mat rcpparma_outerproduct(const arma::colvec& x);
-RcppExport SEXP _PGHorse_rcpparma_outerproduct(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_outerproduct(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_innerproduct
-double rcpparma_innerproduct(const arma::colvec& x);
-RcppExport SEXP _PGHorse_rcpparma_innerproduct(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_innerproduct(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_bothproducts
-Rcpp::List rcpparma_bothproducts(const arma::colvec& x);
-RcppExport SEXP _PGHorse_rcpparma_bothproducts(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_bothproducts(x));
+    Rcpp::traits::input_parameter< int >::type iterations(iterationsSEXP);
+    Rcpp::traits::input_parameter< int >::type thin(thinSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type W(WSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type subject(subjectSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type subject_dems(subject_demsSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Ustar(UstarSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type Ustar_dems(Ustar_demsSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Xbar(XbarSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Z(ZSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type sigma_beta(sigma_betaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tau_beta(tau_betaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type vartheta_beta(vartheta_betaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type A_beta(A_betaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type K(KSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type sigma_kappa(sigma_kappaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tau_kappa(tau_kappaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type vartheta_kappa(vartheta_kappaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type A_kappa(A_kappaSEXP);
+    Rcpp::traits::input_parameter< arma::cube >::type Gamma(GammaSEXP);
+    Rcpp::traits::input_parameter< arma::cube >::type zeta(zetaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type V_gamma(V_gammaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type gamma_0(gamma_0SEXP);
+    Rcpp::traits::input_parameter< double >::type m_0(m_0SEXP);
+    Rcpp::traits::input_parameter< double >::type v_0(v_0SEXP);
+    Rcpp::traits::input_parameter< double >::type tau(tauSEXP);
+    rcpp_result_gen = Rcpp::wrap(horsePGcpp(iterations, thin, Y, W, subject, subject_dems, Ustar, Ustar_dems, Xbar, Z, beta, sigma_beta, tau_beta, vartheta_beta, A_beta, xi, mu, K, sigma_kappa, tau_kappa, vartheta_kappa, A_kappa, Gamma, zeta, V_gamma, gamma_0, m_0, v_0, tau));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_PGHorse_rcpparma_hello_world", (DL_FUNC) &_PGHorse_rcpparma_hello_world, 0},
-    {"_PGHorse_rcpparma_outerproduct", (DL_FUNC) &_PGHorse_rcpparma_outerproduct, 1},
-    {"_PGHorse_rcpparma_innerproduct", (DL_FUNC) &_PGHorse_rcpparma_innerproduct, 1},
-    {"_PGHorse_rcpparma_bothproducts", (DL_FUNC) &_PGHorse_rcpparma_bothproducts, 1},
+    {"_PGHorse_horsePGcpp", (DL_FUNC) &_PGHorse_horsePGcpp, 29},
     {NULL, NULL, 0}
 };
 
