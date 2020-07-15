@@ -1,4 +1,4 @@
-\name{PGHorse-package}
+name{PGHorse-package}
 \alias{PGHorse-package}
 \alias{PGHorse}
 \docType{package}
@@ -6,7 +6,7 @@
 \packageTitle{PGHorse}
 }
 \description{
-\packageDescription{PGHorse}
+\packageDescription{PGHorseS}
 }
 \details{
 
@@ -18,18 +18,8 @@ The DESCRIPTION file:
 \author{
 \packageAuthor{PGHorse}
 
-Maintainer: \packageMaintainer{PGHorse}
+Maintainer: \packageMaintainer{PGHorseS}
 }
-\references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
+\references{~~ Literature or other references for background information ~~}
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
-\examples{
-~~ simple examples of the most important functions ~~
-}
+\examples{~~ simple examples of the most important functions ~~}
