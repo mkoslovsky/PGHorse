@@ -1,4 +1,4 @@
-name{PGHorse-package}
+\name{PGHorse-package}
 \alias{PGHorse-package}
 \alias{PGHorse}
 \docType{package}
