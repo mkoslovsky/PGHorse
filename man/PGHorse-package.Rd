@@ -18,7 +18,7 @@ The DESCRIPTION file:
 \author{
 \packageAuthor{PGHorse}
 
-Maintainer: \packageMaintainer{PGHorseS}
+Maintainer: \packageMaintainer{PGHorse}
 }
 \references{~~ Literature or other references for background information ~~}
 \keyword{ package }
